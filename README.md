@@ -1,4 +1,4 @@
-# PatternFinder_vector_MIPS
+# PatternFinder_vector_MIPS;
 Código assembly MIPS para encontrar padrões dentro um vetor de números inteiros. Trabalho de Fundamento de Sistemas Computacionais, 2023
 #### Authors: [Gabriela Dellamora](https://github.com/MarnieGrenat), [Matheus Maia](https://github.com/mathemaia), [Luize Iensse](https://github.com/Lienss) 
 
