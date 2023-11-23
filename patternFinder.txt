@@ -2,7 +2,7 @@
 
 .text
 	main:
-		subi 		$sp, $sp, 4 	# Reserva espaÃ§o para 1 parÃ¢metros para funÃ§Ã£o (1 * 4 bytes = 1 * 32 bits)
+		subi 		$sp, $sp, 4 	# Reserva espaÃƒÂ§o para 1 parÃƒÂ¢metros para funÃƒÂ§ÃƒÂ£o (1 * 4 bytes = 1 * 32 bits)
 		# INICIALIZA TAMANHO E VETOR DE DADOS
 		la 		$t1, vetorDados
 		sw 		$t1, 0($sp)
@@ -24,9 +24,9 @@
 		li		$t5, 0		# $t5 = contabilizaPadrao
 		li 		$t6, 0		# $t6 = posicaoDados
 		
-		# ENQUANTO (posicaoDados + tamVetorPadrao) <= tamVetorDados, faÃ§o o loop
+		# ENQUANTO (posicaoDados + tamVetorPadrao) <= tamVetorDados, faÃƒÂ§o o loop
 		loopVerificaPadrao:
-			# vou fazer chamada de funÃ§Ã£o, preciso liberar espaÃ§o para receber parÃ¢metros pela stack. Nesse caso, 5 parÃ¢metros.
+			# vou fazer chamada de funÃƒÂ§ÃƒÂ£o, preciso liberar espaÃƒÂ§o para receber parÃƒÂ¢metros pela stack. Nesse caso, 5 parÃƒÂ¢metros.
 			subi 		$sp, $sp, 20	# ( 5 * 4 bytes = 5 * 32 bits)
 			sw 		$t1, 0($sp)		# arg1: * vetorDados
     			sw 		$t6, 4($sp)		# arg2: posicaoDados
@@ -45,7 +45,7 @@
 			addu 		$t0, $t6, $t4 				# $t0 = posicaoDados + tamVetorPadrao			
 			ble  		$t0, $t2, loopVerificaPadrao		# se posicaoDados <= tamVetorDados, fico no loop
 			
-			#SEN�O, FINALIZO MAIN	
+			#SENÃO, FINALIZO MAIN	
 			
 			# Printa String
 			li 			$v0, 4
@@ -62,8 +62,8 @@
 			syscall
 	
 	carregaVetor:
-		# LEITURA DE PAR�METRO
-   		lw 			$s1, 0($sp)		# endereço do vetorDados
+		# LEITURA DE PARÂMETRO
+   		lw 			$s1, 0($sp)		# endereÃ§o do vetorDados
     		addi 			$sp, $sp, 4  		# NORMALIZO STACK POINTER
     
    	 	# PRINT TEXTO
@@ -76,7 +76,7 @@
          	syscall
          
          	# ENVIANDO TAM_DO_VETOR PARA STACK
-         	subi 			$sp, $sp, 4		# Libera espaço para 1 item na pilha
+         	subi 			$sp, $sp, 4		# Libera espaÃ§o para 1 item na pilha
    	 	sw 			$v0, 0($sp) 		# Salva a entrada na pilha
    	 	
    	 	subi 			$t9, $v0, 1 	# $t9 = indice = quantidade - 1 (pq comeca em 0)
@@ -87,7 +87,7 @@
 		
 		
 		# CARREGA VETOR DE DADOS
-		addu			$t8, $s1, $t9		# $t8 = endere�o_do_vetor + tam_do_vetor_em_bytes
+		addu			$t8, $s1, $t9		# $t8 = endereço_do_vetor + tam_do_vetor_em_bytes
 		loopCarregaVetor:
 			#compara se o tamanho do vetor e igual a zero
    			blt 			$t8, $s1, endLoopCarregaVetor 
@@ -133,7 +133,7 @@
     			beq 			$s1, $v0, retornaUm
     			
     			
-    			# SEN�O, CHAMA RECURS�O
+    			# SENÃO, CHAMA RECURSÃO
     			subi 			$sp, $sp, 20	# ( 5 * 4 bytes = 5 * 32 bits)
 			sw 			$s4, 0($sp)		# arg1: * vetorDados
 			addi 			$s3, $s3, 1		# PosicaoDados++
@@ -160,10 +160,10 @@
     	
     	
     	# Params: int * vetDados, int posDados, int * vetPadrao, int posPadrao, int tamPadrao
-	# Função recursiva! Muito cuidado com o PC e o IR
-	# TODO: soma do $sp += 4 dentro da função, assim ela fica dinâmica e evita problema de esquecer de somar fora da chamada de funcao.
-	# TODO: dentro da função, preciso enviar para a stack 1 output
-	# Envia à stack (OUTPUT): 0 ou 1, encontrei padrão ou não encontrei padrão. Dentro da função fazemos uma soma recursiva para retornar o tamanho total de contabilizaPadrao
+	# FunÃ§Ã£o recursiva! Muito cuidado com o PC e o IR
+	# TODO: soma do $sp += 4 dentro da funÃ§Ã£o, assim ela fica dinÃ¢mica e evita problema de esquecer de somar fora da chamada de funcao.
+	# TODO: dentro da funÃ§Ã£o, preciso enviar para a stack 1 output
+	# Envia Ã  stack (OUTPUT): 0 ou 1, encontrei padrÃ£o ou nÃ£o encontrei padrÃ£o. Dentro da funÃ§Ã£o fazemos uma soma recursiva para retornar o tamanho total de contabilizaPadrao
 	
 .data
 	imprimeQuantPadroesContabilizados: .asciiz "Quantidade de Padroes contabilizados: "				# Foram retirados sinais graficos para evitar problemas na impressao
@@ -174,8 +174,8 @@
 	vetorDados: .space 200												# MAX: 50 palavras (50 * 32 bits = 50 * 4 bytes) 
 	
 
-# AnotaÃ§Ãµes importantes:
-	# - A stack Ã© FILO, portanto se vocÃª envia pra stack os seguintes parÃ¢metros nesta ordem -> 5, 4, 3, 2, 1 ; VocÃª vai retirar os parÃ¢metros na ordem -> 1, 2, 3, 4, 5
-	# - Ã possÃ­vel bypassar a regra acima regra manipulando o $sp, mas eu nÃ£o recomendo pra nÃ£o complicar a mais o projeto.
-	# Fiz um dicionÃ¡rio de registradores pra facilitar a manipulaÃ§Ã£o. estÃ¡ no README.MD
+# AnotaÃƒÂ§ÃƒÂµes importantes:
+	# - A stack ÃƒÂ© FILO, portanto se vocÃƒÂª envia pra stack os seguintes parÃƒÂ¢metros nesta ordem -> 5, 4, 3, 2, 1 ; VocÃƒÂª vai retirar os parÃƒÂ¢metros na ordem -> 1, 2, 3, 4, 5
+	# - ÃƒÂ‰ possÃƒÂ­vel bypassar a regra acima regra manipulando o $sp, mas eu nÃƒÂ£o recomendo pra nÃƒÂ£o complicar a mais o projeto.
+	# Fiz um dicionÃƒÂ¡rio de registradores pra facilitar a manipulaÃƒÂ§ÃƒÂ£o. estÃƒÂ¡ no README.MD
 	
